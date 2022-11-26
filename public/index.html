@@ -10,18 +10,95 @@
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl@3.11.0/dist/tf-backend-webgl.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/pose-detection@0.0.6/dist/pose-detection.min.js"></script>
   <link rel="stylesheet" href="css/main.css" />
+  <style>
+    #modal.modal-overlay {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(1.5px);
+      -webkit-backdrop-filter: blur(1.5px);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+    #modal .modal-window {
+        background: rgba( 69, 139, 197, 0.70 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+        backdrop-filter: blur( 13.5px );
+        -webkit-backdrop-filter: blur( 13.5px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.18 );
+        width: 400px;
+        height: 200px;
+        position: relative;
+        top: -100px;
+        padding: 10px;
+        text-align: center;
+        line-height: 100px;
+    }
+    #modal .title {
+
+        display: inline;
+        text-shadow: 1px 1px 2px gray;
+        color: white;
+        
+    }
+    #modal .title h2 {
+        display: inline;
+    }
+    #modal .close-area {
+        display: inline;
+        float: right;
+        padding-right: 10px;
+        cursor: pointer;
+        text-shadow: 1px 1px 2px gray;
+        color: white;
+    }
+
+    #modal .content {
+        margin-top: 10px;
+        padding: 0px 10px;
+        text-shadow: 1px 1px 2px gray;
+        color: white;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="header">Nerd Neck
-    <div id="videoCanvas">
-      <video id="video" width="640" height="480" autoplay muted playsinline></video>
-      <canvas id="canvas"></canvas>
-    </div>
+  <div id="header">Nerd Neck</div>
+  <div id="button" style="text-align: center;">
+    <button onclick="play()" type="button">Play Video</button>
+    <button onclick="stop()" type="button">Stop Video</button>
   </div>
-
+  <div id="videoCanvas">
+    <video id="video" width="640" height="480" autoplay muted playsinline></video>
+    <canvas id="canvas"></canvas>
+  </div>
+  <!-- <div id="container">
+    <button id="btn-modal">모달 창 열기 버튼</button>
+  </div> -->
+  <div id="modal" class="modal-overlay">
+      <div class="modal-window">
+          <div class="title">
+              <h2>Nerd Neck</h2>
+          </div>
+          <div class="close-area">X</div> 
+          <div class="content">
+              <p>자세가 좋지 않습니다</p>
+          </div>
+          
+      </div>
+  </div>
   <script src="js/main.js"></script>
   <script src="js/posenet.js"></script>
+  <script src="js/modal.js"></script>
 </body>
 
 </html>
